@@ -1,0 +1,22 @@
+qri: ds:0
+name: world_bank_population
+meta:
+  title: World Bank Population
+  description: |
+    ( 1 ) United Nations Population Division. World Population Prospects: 2017 Revision. ( 2 ) Census reports and other statistical publications from national
+    statistical offices, ( 3 ) Eurostat: Demographic Statistics, ( 4 ) United Nations Statistical Division. Population and Vital Statistics Reprot ( various years ),
+    ( 5 ) U.S. Census Bureau: International Database, and ( 6 ) Secretariat of the Pacific Community: Statistics and Demography Programme.
+  downloadURL: http://api.worldbank.org/v2/en/indicator/SP.POP.TOTL?downloadformat=csv
+  homeURL: https://data.worldbank.org/indicator/sp.pop.totl
+  keywords:
+  - united nations
+  - population
+  - world bank
+  - census
+  license:
+    type: CC-BY-4.0
+    url: https://creativecommons.org/licenses/by/4.0/
+  theme:
+  - population
+transform:
+  scriptPath: transform.star

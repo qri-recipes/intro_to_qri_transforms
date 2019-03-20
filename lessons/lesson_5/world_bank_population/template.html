@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ .Meta.Title }}</title>
+    <meta charset="UTF-8" /> 
+    <style type="text/css">
+      body {
+        font-family: avenir-next, sans-serif;
+      }
+      .info {
+        width: 600px;
+        margin: 4em auto;
+      }
+    </style>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script type="text/javascript">
+      window.data = {{ .Body }}
+      window.schema = {{ .Structure.Schema }}
+    </script>
+  </head>
+  <body>
+    <div id="chart" style="width:960px;height:500px;margin:4em auto;"></div>
+    <div class="info">
+      <p>{{ .Meta.Description }}</p>
+      <small>{{ .Peername}}/{{ .Name }}<br/><span style="color:#888">{{ .Path }}</span></small>
+    </div>
+    <script>
+      const totals = window.data.reduce((acc, row) => {
+        if (!acc) {
+          return row.slice(4, row.length-1)
+        }
+        row.slice(4, row.length-1).forEach((el, i) => {
+          if (typeof el === 'number') {
+            acc[i] += el
+          }
+        });
+        return acc
+      }, undefined)
+
+      const cols = window.schema.items.items
+      const popByYear = cols.slice(4,cols.length-1).map((el, i) => {
+        return {
+          name: el.title,
+          x: +el.title,
+          y: totals[i]
+        }
+      })
+
+      Highcharts.chart('chart', {
+        // options - see https://api.highcharts.com/highcharts
+        chart : {
+          type : 'line',
+        },
+        title: {
+          text: {{ .Meta.Title }},
+        },
+        series: [
+          {
+            name: "global population",
+            data: popByYear,
+          }
+        ]
+      });
+    </script>
+  </body>
+</html>

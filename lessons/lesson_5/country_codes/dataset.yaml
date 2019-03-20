@@ -1,0 +1,12 @@
+qri: ds:0
+name: country_codes
+meta:
+  description: 'Comprehensive country code information, including ISO 3166 codes, ITU
+    dialing codes, ISO 4217 currency codes, and many others. Provided as a Tabular Data
+    Package: view datapackage Data Data are fetched from multiple sources: Official
+    formal and short names (in English, French, Spanish, Arabic)'
+  downloadURL: https://datahub.io/core/country-codes/r/country-codes.csv
+  homeURL: https://datahub.io/core/country-codes
+  title: Comprehensive country codes
+transform:
+  scriptPath: download.star
