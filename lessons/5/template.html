@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{{ .Meta.Title }}</title>
+    <title>{{ ds.meta.title }}</title>
     <meta charset="UTF-8" /> 
     <style type="text/css">
       body {
@@ -14,15 +14,15 @@
     </style>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script type="text/javascript">
-      window.data = {{ .Body }}
-      window.schema = {{ .Structure.Schema }}
+      window.data = {{ allBodyEntries }}
+      window.schema = {{ ds.structure.schema }}
     </script>
   </head>
   <body>
     <div id="chart" style="width:960px;height:500px;margin:4em auto;"></div>
     <div class="info">
-      <p>{{ .Meta.Description }}</p>
-      <small>{{ .Peername}}/{{ .Name }}<br/><span style="color:#888">{{ .Path }}</span></small>
+      <p>{{ ds.meta.description }}</p>
+      <small>{{ ds.peername}}/{{ ds.name }}<br/><span style="color:#888">{{ ds.path }}</span></small>
     </div>
     <script>
       const totals = window.data.reduce((acc, row) => {
@@ -52,7 +52,7 @@
           type : 'line',
         },
         title: {
-          text: {{ .Meta.Title }},
+          text: {{ ds.meta.title }},
         },
         series: [
           {
